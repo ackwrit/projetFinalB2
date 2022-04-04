@@ -43,7 +43,7 @@ class chatControllerState extends State<chatController>{
 
 
   Widget bodyPage(){
-    print('ody messagerie');
+
     print(widget.moi.id);
     print(widget.partenaire.id);
     return Container(
