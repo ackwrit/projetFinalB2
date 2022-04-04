@@ -1,6 +1,8 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+//Création du model Message afin de déterminer l'id de l'envoyeur et de l'id de la personne qui reçoit le mail
+
 class Message {
   String idMessage="";
   String from="";
