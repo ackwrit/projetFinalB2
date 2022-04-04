@@ -37,7 +37,8 @@ class messageBubble extends StatelessWidget{
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
               color: colorBubble,
               child: Container(
-                padding: EdgeInsets.all(10),
+               
+                padding: EdgeInsets.all(animation?.value),
                 child: Text(message.texte,style: TextStyle(color: textcolor),),
               ),
 

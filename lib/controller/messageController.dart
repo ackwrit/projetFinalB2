@@ -18,15 +18,36 @@ class Messagecontroller extends StatefulWidget{
 
 }
 
-class MessagecontrollerState extends State<Messagecontroller> {
+class MessagecontrollerState extends State<Messagecontroller> with SingleTickerProviderStateMixin{
+  late Animation animation;
+  late AnimationController controller;
+
+  @override
+  void initState() {
+    
+    super.initState();
+    controller = AnimationController(
+      duration: const Duration(seconds: 4),
+      vsync: this,
+  
+
+    )..repeat();
+    animation = Tween<double>(begin: 10,end: 20).animate(controller);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return StreamBuilder<QuerySnapshot>(
         stream: firestoreHelper().fire_message.orderBy('envoiMessage',descending: true).snapshots(),
         builder: (BuildContext context, AsyncSnapshot <QuerySnapshot>snapshot) {
           if (!snapshot.hasData) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           }
           else {
             List<DocumentSnapshot>documents = snapshot.data!.docs;
@@ -39,7 +60,7 @@ class MessagecontrollerState extends State<Messagecontroller> {
                   if((discussion.from==widget.id.id && discussion.to==widget.idPartner.id)||(discussion.from==widget.idPartner.id&&discussion.to==widget.id.id))
                   {
 
-                    return messageBubble(widget.id.id, widget.idPartner, discussion);
+                    return messageBubble(widget.id.id, widget.idPartner, discussion,animation: animation,);
                   }
                   else
                   {

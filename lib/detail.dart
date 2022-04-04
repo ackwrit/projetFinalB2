@@ -57,8 +57,8 @@ class DetailState extends State<Detail>{
         children: [
           const SizedBox(height: 20,),
           Container(
-            height: 200,
-            width: 200,
+            height: 150,
+            width: 150,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
@@ -71,10 +71,26 @@ class DetailState extends State<Detail>{
 
           ),
           const SizedBox(height: 20,),
+          Card(
+            elevation: 5.0,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
 
-              Text("${widget.user.prenom} ${widget.user.nom}"),
-              const SizedBox(height: 20,),
-               Text(widget.user.mail),
+            child: Container(
+              padding: const EdgeInsets.all(20),
+              height: MediaQuery.of(context).size.height/2,
+              width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    children: [
+                         Text("${widget.user.prenom} ${widget.user.nom}"),
+                const SizedBox(height: 20,),
+                 Text(widget.user.mail),
+          
+                    ],
+                  ),
+            ),
+          ),
+
+           
         ],
         )
     );

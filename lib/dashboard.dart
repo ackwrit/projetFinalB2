@@ -110,11 +110,21 @@ class dashBoardState extends State<dashBoard>{
                     else
                       {
                         setState(() {
+                          //mise à jour des contacts cia mon profil
                           monProfil.contacts.add(user.id);
+                          //Mise à jour des contacts réciproquement dans le profil sur lequel on souhaite discuter
+                          user.contacts.add(monProfil.id);
+                          
                           Map<String,dynamic> map ={
                             "CONTACTS":monProfil.contacts
                           };
+                          Map<String,dynamic> mapping = {
+                            "CONTACTS":user.contacts
+
+                          };
+                          //Stockage dans la base de donnée
                           firestoreHelper().updateUser(monProfil.id, map);
+                          firestoreHelper().updateUser(user.id, mapping);
 
                         });
 
@@ -127,6 +137,7 @@ class dashBoardState extends State<dashBoard>{
                  height: 50,
                  width: 50,
                  decoration: BoxDecoration(
+                   shape: BoxShape.circle,
                    image: DecorationImage(
                      fit: BoxFit.fill,
                      image:(user.avatar!=null)?NetworkImage(user.avatar!):const NetworkImage("https://firebasestorage.googleapis.com/v0/b/projetfinalb2.appspot.com/o/inconnu.jpeg?alt=media&token=fe5ffbb2-f9fa-4a7a-bdc1-6a482817c9d4") 

@@ -18,4 +18,6 @@ class Message {
     Timestamp timestamp = map["envoiMessage"];
     envoiMessage = timestamp.toDate();
   }
+
+
 }
